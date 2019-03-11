@@ -1,0 +1,60 @@
+python设计理念：
+①鸭子类型：
+在程序设计中，鸭子类型（英语：duck typing）是动态类型的一种风格。在这种风格中，一个对象有效的语义，不是由继承自特定的类
+或实现特定的接口，而是由"当前方法和属性的集合"决定。
+
+“当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子。”
+在鸭子类型中，关注点在于对象的行为，能作什么；而不是关注对象所属的类型。
+
+example：
+
+class Duck:
+    def __init__(self, name, foot_number):
+        self.name = name
+        self.foot_number = foot_number
+
+    def say(self):
+        print('I\'m a duck!,My name is ' + self.name + ' ~GaGaGa！')
+
+    def go(self):
+        print('Walking on ' + self.foot_number + ' feet' + ' ~GaGaGa!')
+
+
+class Dog:
+    def __init__(self, name, foot_number):
+        self.name = name
+        self.foot_number = foot_number
+
+    def say(self):
+        print('I\'m a dog!,My name is ' + self.name + ' ~WangWangWang！')
+
+    def go(self):
+        print('Walking on ' + self.foot_number + ' feet' + ' ~WangWangWang!')
+
+
+class Cat:
+    def __init__(self, name, foot_number):
+        self.name = name
+        self.foot_number = foot_number
+
+    def say(self):
+        print('I\'m a cat!,My name is ' + self.name + ' ~MiuMiuMiu！')
+
+    def go(self):
+        print('Walking on ' + self.foot_number + ' feet' + ' ~MiuMiuMiu')
+
+
+def talk_and_walk(target_animal):
+    # 只要实现了say()方法和go()方法就是动物，而不需要去继承某个基类
+    target_animal.say()
+    target_animal.go()
+
+
+duck = Duck('Town', 'two')
+dog = Dog('Tom', 'four')
+cat = Cat('Kitty', 'four')
+
+animals = [duck, dog, cat]
+
+for animal in animals:
+    talk_and_walk(animal)

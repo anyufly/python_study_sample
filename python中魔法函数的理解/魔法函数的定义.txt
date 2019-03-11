@@ -1,0 +1,44 @@
+在Python中我们将以__双下划线开头，__双下滑线结尾的函数称之为魔法函数，
+在class中实现魔法函数可以为我们的类添加功能或者将类指定为特定的内置类型
+example：
+class BookCollections:
+    """
+    魔法函数示例
+    """
+    def __init__(self, book_list):
+        """
+        构造方法：定义一个变量 book_list
+        """
+        self.book_list = book_list
+
+    def __getitem__(self, item):
+        """
+        实现魔法函数__getitem__，使对象可以进行迭代、切片（成为序列）
+        :param item:
+        :return:
+        """
+        return self.book_list[item]
+
+    def __len__(self):
+        """
+        实现魔法函数__len__，使对象可以在外部调用len()函数获取长度
+        :return:
+        """
+
+        return len(self.book_list)
+
+
+book_collection = BookCollections(['追风筝的人', '不能承受的生命之轻', '皮囊'])
+book_collection1 = book_collection[:2]
+
+# 实现 __getitem__魔法函数后，对象成为序列类型 可迭代、切片
+for i in book_collection:
+    print(i)
+
+for i in book_collection1:
+    print(i)
+
+# 实现魔法函数__len__，使对象可以在外部调用len()函数获取长度
+print(len(book_collection))
+
+魔法函数误区：魔法函数并不属于某个类（不是重写父类的方法），而是Python中预定义的函数（鸭子类型）
